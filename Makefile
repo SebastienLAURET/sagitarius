@@ -1,19 +1,20 @@
 CC=g++
-CFLAGS=-W -Wall -Werror
-LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
+CFLAGS=-W -Wall -Werror -std=c++11
+LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system -std=c++11
 
-BIN_FOLDER=./bin
-NAME=${BIN_FOLDER}/test
+NAME=test
 
 SRC_FOLDER=./src
-FILE=${SRC_FOLDER}/main.cpp
+FILE=${SRC_FOLDER}/planet.cpp \
+	${SRC_FOLDER}/player.cpp \
+	${SRC_FOLDER}/ViewFinder.cpp \
+	${SRC_FOLDER}/main.cpp
 
 OBJ= $(FILE:.cpp=.o)
 
 all: $(NAME)
 
 ${NAME}: $(OBJ)
-	mkdir $(BIN_FOLDER)
 	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 clean:
