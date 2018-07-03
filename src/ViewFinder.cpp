@@ -5,7 +5,7 @@ ViewFinder::ViewFinder(int x, int y, Player &player)
 _origine(sf::Vector2i(x, y)),
 _fin(sf::Vector2i(x, y)) {
   setOrigin(0, 0);
-  setPosition((float)player.getPosition().x,
+  setPosition((float)player.getPosition().x ,
               (float)player.getPosition().y);
 }
 
@@ -28,15 +28,7 @@ double ViewFinder::getVecAngle() const {
   sf::Vector2i  vec = getMove();
   double        angle = 0;
 
-  if (vec.x > 0 && vec.y == 0){
-    angle = 0;
-  } else if (vec.x == 0 && vec.y > 0) {
-    angle = 90;
-  } else if (vec.x < 0 && vec.y == 0) {
-    angle = 180;
-  } else if (vec.x == 0 && vec.y < 0) {
-    angle = 270;
-  } else if (vec.y < 0)  {
+  if (vec.y < 0)  {
     angle = (acos((double)vec.x/getVecLong()) * 180.0 / 3.14);
   } else if (vec.y > 0)  {
     angle = 360 - (acos((double)vec.x/getVecLong()) * 180.0 / 3.14);
