@@ -12,7 +12,7 @@ private:
   sf::Vector2i _fin;
 
 public:
-  ViewFinder(int x, int y);
+  ViewFinder(int x, int y, Player &player);
 
   void update(int x, int y);
 

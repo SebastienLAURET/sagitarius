@@ -10,7 +10,7 @@ FILE=${SRC_FOLDER}/planet.cpp \
 	${SRC_FOLDER}/ViewFinder.cpp \
 	${SRC_FOLDER}/main.cpp
 
-OBJ= $(FILE:.cpp=.o)
+OBJ=$(FILE:.cpp=.o)
 
 all: $(NAME)
 

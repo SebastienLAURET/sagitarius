@@ -30,7 +30,7 @@ int main()
           player.goRight();
       } else if (event.type == sf::Event::MouseButtonPressed) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          vFinder = new ViewFinder(event.mouseButton.x, event.mouseButton.y);
+          vFinder = new ViewFinder(event.mouseButton.x, event.mouseButton.y, player);
         }
       } else if (event.type == sf::Event::MouseMoved && vFinder) {
         vFinder->update(event.mouseMove.x, event.mouseMove.y);

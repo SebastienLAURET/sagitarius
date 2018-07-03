@@ -1,11 +1,12 @@
 #include "ViewFinder.hpp"
 
-ViewFinder::ViewFinder(int x, int y)
+ViewFinder::ViewFinder(int x, int y, Player &player)
 :sf::RectangleShape(sf::Vector2f(10, 1)),
 _origine(sf::Vector2i(x, y)),
 _fin(sf::Vector2i(x, y)) {
   setOrigin(0, 0);
-  setPosition((float)_origine.x, (float)_origine.y);
+  setPosition((float)player.getPosition().x,
+              (float)player.getPosition().y);
 }
 
 void ViewFinder::update(int x, int y) {
@@ -15,7 +16,7 @@ void ViewFinder::update(int x, int y) {
 }
 
 sf::Vector2i ViewFinder::getMove() const {
-  return _fin - _origine;
+  return sf::Vector2i(_fin.x - _origine.x, _origine.y - _fin.y);
 }
 
 double ViewFinder::getVecLong() const {
@@ -24,6 +25,21 @@ double ViewFinder::getVecLong() const {
 }
 
 double ViewFinder::getVecAngle() const {
-  sf::Vector2i vec = getMove();
-  return atan (vec.x/vec.y) * 180 / 3.14;
+  sf::Vector2i  vec = getMove();
+  double        angle = 0;
+
+  if (vec.x > 0 && vec.y == 0){
+    angle = 0;
+  } else if (vec.x == 0 && vec.y > 0) {
+    angle = 90;
+  } else if (vec.x < 0 && vec.y == 0) {
+    angle = 180;
+  } else if (vec.x == 0 && vec.y < 0) {
+    angle = 270;
+  } else if (vec.y < 0)  {
+    angle = (acos((double)vec.x/getVecLong()) * 180.0 / 3.14);
+  } else if (vec.y > 0)  {
+    angle = 360 - (acos((double)vec.x/getVecLong()) * 180.0 / 3.14);
+  }
+  return angle;
 }
