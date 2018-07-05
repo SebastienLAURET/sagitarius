@@ -8,6 +8,10 @@ Player::Player(Planet &planet)
   setRotation(0);
 }
 
+const Planet &Player::getPlanet() const {
+  return _planet;
+}
+
 double Player::goRight() {
   return move(DELTA_MOVE);
 }

@@ -4,9 +4,19 @@ ViewFinder::ViewFinder(int x, int y, Player &player)
 :sf::RectangleShape(sf::Vector2f(10, 1)),
 _origine(sf::Vector2i(x, y)),
 _fin(sf::Vector2i(x, y)) {
+  sf::Transform translation;
+  sf::Transform rotation;
+  sf::Transform transform;
+  sf::Vector2f position;
+  translation.translate(-player.getOrigin().x + player.getSize().x, 0);
+  rotation.rotate(player.getRotation(),
+                  (float)player.getPlanet().getPosition().x,
+                  (float)player.getPlanet().getPosition().y);
+  transform = translation * rotation;
+  position = transform.transformPoint(player.getPlanet().getPosition());
+
   setOrigin(0, 0);
-  setPosition((float)player.getPosition().x ,
-              (float)player.getPosition().y);
+  setPosition(position);
 }
 
 void ViewFinder::update(int x, int y) {

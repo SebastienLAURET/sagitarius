@@ -18,6 +18,8 @@ public:
 
   Player(Planet &);
 
+  const Planet &getPlanet() const;
+
   double getPosDeg();
 
   double goRight();
