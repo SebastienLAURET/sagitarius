@@ -2,10 +2,14 @@
 #define ARROW_HPP
 
 #include <SFML/Graphics.hpp>
+#include <chrono>
 
 class Arrow : public sf::RectangleShape
 {
 private:
+  std::chrono::high_resolution_clock::time_point _creation;
+  std::chrono::high_resolution_clock::time_point _lastUpdate;
+
   sf::Vector2i _trajectoir;
 
 public:

@@ -3,6 +3,7 @@
 Arrow::Arrow(sf::Vector2i trajectoir, sf::Vector2f position)
 : sf::RectangleShape(sf::Vector2f(5, 2)), _trajectoir(trajectoir) {
   setPosition(position);
+  _creation = high_resolution_clock::now();
 }
 
 const sf::Vector2i &Arrow::getTrajectoir() const {
