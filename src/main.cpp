@@ -2,21 +2,13 @@
 #include <list>
 #include <unistd.h>
 #include "game_conf.hpp"
-#include "planet.hpp"
-#include "player.hpp"
-#include "ViewFinder.hpp"
+#include "Univairse.hpp"
 
 int main()
 {
-  bool targetActive = false;
-  sf::RenderWindow window(sf::VideoMode(1600, 900), "SFML works!");
-  std::list<sf::Shape*> listDrawableElem;
-  Planet planet(500, 500, 100);
-  Player player(planet);
-  ViewFinder *vFinder = NULL;
-
-  listDrawableElem.push_front(&player);
-  listDrawableElem.push_front(&planet);
+  sf::RenderWindow        window(sf::VideoMode(1600, 900), "SFML works!");
+  const std::list<sf::Shape*>   *listDrawableElem;
+  Univairse               univairse;
 
   while (window.isOpen()) {
     sf::Event event;
@@ -25,28 +17,27 @@ int main()
         window.close();
       } else if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Left)
-          player.goLeft();
+          univairse.playerMoveLeft();
         if (event.key.code == sf::Keyboard::Right)
-          player.goRight();
+          univairse.playerMoveRight();
       } else if (event.type == sf::Event::MouseButtonPressed) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          vFinder = new ViewFinder(event.mouseButton.x, event.mouseButton.y, player);
+          univairse.playerActiveViewFinder(event.mouseButton.x, event.mouseButton.y);
         }
-      } else if (event.type == sf::Event::MouseMoved && vFinder) {
-        vFinder->update(event.mouseMove.x, event.mouseMove.y);
+      } else if (event.type == sf::Event::MouseMoved && univairse.isViewFinderActive()) {
+          univairse.playerUpdateViewFinder(event.mouseMove.x, event.mouseMove.y);
       } else if (event.type == sf::Event::MouseButtonReleased) {
-        delete vFinder;
-        vFinder = NULL;
+        univairse.playerShoot();
       }
      }
 
     window.clear();
-    for (auto drawableElem: listDrawableElem) {
+    listDrawableElem = univairse.getDrawableObject();
+    for (auto drawableElem: *listDrawableElem) {
       window.draw(*drawableElem);
     }
-    if (vFinder)
-      window.draw(*vFinder);
     window.display();
+    delete listDrawableElem;
   }
   return 0;
 }

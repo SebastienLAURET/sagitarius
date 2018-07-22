@@ -28,6 +28,10 @@ sf::Vector2i ViewFinder::getMove() const {
   return sf::Vector2i(_fin.x - _origine.x, _origine.y - _fin.y);
 }
 
+Arrow *ViewFinder::shootArrow() const {
+  return new Arrow(getMove(), getPosition());
+}
+
 double ViewFinder::getVecLong() const {
   sf::Vector2i vec = getMove();
   return sqrt(pow(vec.x, 2) + pow(vec.y, 2));
