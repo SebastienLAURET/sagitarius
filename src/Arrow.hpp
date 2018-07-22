@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
+#include <math.h>
+#include "game_conf.hpp"
 
 class Arrow : public sf::RectangleShape
 {
@@ -14,12 +16,16 @@ private:
 
 public:
   Arrow(sf::Vector2i, sf::Vector2f);
-
   const sf::Vector2i &getTrajectoir() const;
+  bool isAlive() const;
 
   void setTrajectoir(sf::Vector2i&);
+  const sf::Vector2f &move();
 
-  const sf::Vector2i &move();
+private:
+  void    updatePosition();
+  void    adjustRotation();
+  double  getVecLong() const;
 };
 
 #endif

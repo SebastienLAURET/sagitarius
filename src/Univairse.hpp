@@ -25,9 +25,11 @@ public:
   void                          playerActiveViewFinder(int x, int y);
   void                          playerUpdateViewFinder(int x, int y);
   void                          playerCancelViewFinder();
-  void                          playerShoot();
 
-  void                          arrowMove();
+  void                          playerShoot();
+  bool                          isArrowAlive();
+  void                          updateArrow();
+
   const std::list<sf::Shape*>   *getDrawableObject() const;
 private:
   void    initPlanets();

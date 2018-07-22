@@ -29,14 +29,16 @@ int main()
       } else if (event.type == sf::Event::MouseButtonReleased) {
         univairse.playerShoot();
       }
-     }
-
-    window.clear();
-    listDrawableElem = univairse.getDrawableObject();
-    for (auto drawableElem: *listDrawableElem) {
-      window.draw(*drawableElem);
     }
-    window.display();
+    do {
+      univairse.updateArrow();
+      window.clear();
+      listDrawableElem = univairse.getDrawableObject();
+      for (auto drawableElem: *listDrawableElem) {
+        window.draw(*drawableElem);
+      }
+      window.display();
+    } while (univairse.isArrowAlive());
     delete listDrawableElem;
   }
   return 0;

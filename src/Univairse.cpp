@@ -37,8 +37,16 @@ void Univairse::playerShoot() {
   deleteViewFinder();
 }
 
-void Univairse::arrowMove() {
-
+void Univairse::updateArrow() {
+  if (_arrow != NULL && _arrow->isAlive()) {
+    _arrow->move();
+  } else if (_arrow != NULL) {
+    delete _arrow;
+    _arrow = NULL;
+  }
+}
+bool  Univairse::isArrowAlive() {
+  return _arrow != NULL;
 }
 
 const std::list<sf::Shape*> *Univairse::getDrawableObject() const {

@@ -2,6 +2,11 @@
 
 #define DELTA_MOVE 1
 
+#define ARROW_DURATION_LIFE 300000
+#define ARROW_DELTA_TIME 1000
+
+#define ARROW_RATE_MOVE_TIME DELTA_TIME_ARROW / 1000
+
 // MACRO
 
 #define ABS(a) (a < 0? -a : a)
