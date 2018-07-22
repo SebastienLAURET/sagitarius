@@ -33,6 +33,7 @@ void Univairse::playerCancelViewFinder() {
 }
 
 void Univairse::playerShoot() {
+  _arrow = _vFinder->shootArrow();
   deleteViewFinder();
 }
 
