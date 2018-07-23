@@ -13,14 +13,15 @@ private:
   std::chrono::high_resolution_clock::time_point _creation;
   std::chrono::high_resolution_clock::time_point _lastUpdate;
 
-  sf::Vector2i _trajectoir;
+  sf::Vector2f _trajectoir;
 
 public:
-  Arrow(sf::Vector2i, sf::Vector2f);
-  const sf::Vector2i &getTrajectoir() const;
+  Arrow(sf::Vector2f, sf::Vector2f);
+  const sf::Vector2f &getTrajectoir() const;
   bool isAlive() const;
 
-  void setTrajectoir(sf::Vector2i&);
+  void applyGravity(sf::Vector2f&gravity);
+  void setTrajectoir(sf::Vector2f&);
   const sf::Vector2f &move();
 
 private:

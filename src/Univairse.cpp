@@ -41,7 +41,8 @@ void Univairse::playerShoot() {
 
 void Univairse::updateArrow() {
   if (_arrow != NULL && _arrow->isAlive()) {
-    calculateGravity(_arrow->getPosition());
+    sf::Vector2f gravity = calculateGravity(_arrow->getPosition());
+    _arrow->applyGravity(gravity);
     _arrow->move();
   } else if (_arrow != NULL) {
     delete _arrow;
@@ -91,7 +92,7 @@ void Univairse::deleteViewFinder() {
 sf::Vector2f  Univairse::calculateGravity(sf::Vector2f pos) const {
   sf::Vector2f  tra;
   for (auto planet : _planets) {
-    tra = planet->getAtraction(pos);
+    tra += planet->getAtraction(pos);
   }
   return tra;
 }

@@ -1,6 +1,6 @@
 #include "Arrow.hpp"
 
-Arrow::Arrow(sf::Vector2i trajectoir, sf::Vector2f position)
+Arrow::Arrow(sf::Vector2f trajectoir, sf::Vector2f position)
 : sf::RectangleShape(sf::Vector2f(10, 4)), _trajectoir(trajectoir) {
   setPosition(position);
   _creation = std::chrono::high_resolution_clock::now();
@@ -8,26 +8,30 @@ Arrow::Arrow(sf::Vector2i trajectoir, sf::Vector2f position)
   adjustRotation();
 }
 
-const sf::Vector2i &Arrow::getTrajectoir() const {
+const sf::Vector2f &Arrow::getTrajectoir() const {
   return _trajectoir;
 }
+void Arrow::applyGravity(sf::Vector2f&gravity) {
+  _trajectoir += gravity;
+}
 
-void Arrow::setTrajectoir(sf::Vector2i& trajectoir) {
+void Arrow::setTrajectoir(sf::Vector2f& trajectoir) {
   _trajectoir = trajectoir;
 }
+
 bool Arrow::isAlive() const {
-  std::cout << "is Alive :: " << (std::chrono::high_resolution_clock::now() - _lastUpdate).count() << " > " << ARROW_DURATION_LIFE << std::endl;
+  //std::cout << "is Alive :: " << (std::chrono::high_resolution_clock::now() - _lastUpdate).count() << " > " << ARROW_DURATION_LIFE << std::endl;
   return (std::chrono::high_resolution_clock::now() - _creation).count() < ARROW_DURATION_LIFE;
 }
 
 const sf::Vector2f &Arrow::move() {
   std::chrono::duration<double> diffTime = std::chrono::high_resolution_clock::now() - _lastUpdate;
-  std::cout << "move :: " << diffTime.count() << " > " << ARROW_DELTA_TIME << std::endl;
+  //std::cout << "move :: " << diffTime.count() << " > " << ARROW_DELTA_TIME << std::endl;
   if (diffTime.count() >= ARROW_DELTA_TIME) {
-    std::cout << "Update pos Arrow " << std::endl;
+    _lastUpdate = std::chrono::high_resolution_clock::now();
+    //std::cout << "Update pos Arrow " << std::endl;
     updatePosition();
     adjustRotation();
-    _lastUpdate = std::chrono::high_resolution_clock::now();
   }
   return getPosition();
 }

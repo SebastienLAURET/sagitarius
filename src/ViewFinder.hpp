@@ -16,7 +16,7 @@ public:
   ViewFinder(int x, int y, Player &player);
 
   void          update(int x, int y);
-  sf::Vector2i  getMove() const;
+  sf::Vector2f  getMove() const;
   Arrow         *shootArrow() const;
 
 private:

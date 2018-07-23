@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <math.h>
+#include "game_conf.hpp"
+
 class Planet : public sf::CircleShape
 {
 private:

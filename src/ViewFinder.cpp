@@ -24,8 +24,8 @@ void ViewFinder::update(int x, int y) {
   setRotation(getVecAngle());
 }
 
-sf::Vector2i ViewFinder::getMove() const {
-  return sf::Vector2i(_fin.x - _origine.x, _origine.y - _fin.y);
+sf::Vector2f ViewFinder::getMove() const {
+  return sf::Vector2f(_fin.x - _origine.x, _origine.y - _fin.y);
 }
 
 Arrow *ViewFinder::shootArrow() const {
@@ -33,12 +33,12 @@ Arrow *ViewFinder::shootArrow() const {
 }
 
 double ViewFinder::getVecLong() const {
-  sf::Vector2i vec = getMove();
+  sf::Vector2f vec = getMove();
   return sqrt(pow(vec.x, 2) + pow(vec.y, 2));
 }
 
 double ViewFinder::getVecAngle() const {
-  sf::Vector2i  vec = getMove();
+  sf::Vector2f  vec = getMove();
   double        angle = 0;
 
   if (vec.y < 0)  {
