@@ -76,6 +76,7 @@ void Univairse::initPlanets() {
   Planet *tmpPlanet = new Planet(500, 500, 100);
   initPlayers(*tmpPlanet);
   _planets.push_front(tmpPlanet);
+  _planets.push_front(new Planet(900, 400, 50));
 }
 
 void Univairse::initPlayers(Planet &planet) {
