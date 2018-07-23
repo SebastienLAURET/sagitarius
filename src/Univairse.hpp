@@ -35,7 +35,7 @@ private:
   void    initPlanets();
   void    initPlayers(Planet &planet);
   void    deleteViewFinder();
-
+  sf::Vector2f  calculateGravity(sf::Vector2f) const;
 };
 
 #endif

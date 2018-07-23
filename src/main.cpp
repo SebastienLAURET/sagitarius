@@ -25,7 +25,7 @@ int main()
           univairse.playerActiveViewFinder(event.mouseButton.x, event.mouseButton.y);
         }
       } else if (event.type == sf::Event::MouseMoved && univairse.isViewFinderActive()) {
-          univairse.playerUpdateViewFinder(event.mouseMove.x, event.mouseMove.y);
+        univairse.playerUpdateViewFinder(event.mouseMove.x, event.mouseMove.y);
       } else if (event.type == sf::Event::MouseButtonReleased) {
         univairse.playerShoot();
       }

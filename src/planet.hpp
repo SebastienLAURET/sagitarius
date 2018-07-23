@@ -2,7 +2,8 @@
 #define PLANET_HPP
 
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
+#include <math.h>
 class Planet : public sf::CircleShape
 {
 private:
@@ -12,6 +13,8 @@ private:
 
 public:
   Planet(int posX, int posY, float size);
+
+  sf::Vector2f getAtraction(sf::Vector2f pos) const;
 
   int getPosX() const;
   int getPosY() const;

@@ -7,6 +7,12 @@ Planet::Planet(int posX, int posY, float size)
   setFillColor(sf::Color::Green);
 }
 
+sf::Vector2f Planet::getAtraction(sf::Vector2f pos) const {
+  sf::Vector2f distDiff = getPosition() - pos;
+  double dist = sqrt(pow(distDiff.x, 2) + pow(distDiff.y, 2));
+  std::cout <<"x :: "<< distDiff.x << " y :: " << distDiff.y << std::endl;
+}
+
 int Planet::getPosX() const {
   return _posX;
 }

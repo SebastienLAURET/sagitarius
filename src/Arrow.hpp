@@ -2,6 +2,7 @@
 #define ARROW_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <chrono>
 #include <math.h>
 #include "game_conf.hpp"
