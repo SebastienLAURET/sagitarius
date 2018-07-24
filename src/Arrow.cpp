@@ -21,16 +21,13 @@ void Arrow::setTrajectoir(sf::Vector2f& trajectoir) {
 }
 
 bool Arrow::isAlive() const {
-  //std::cout << "is Alive :: " << (std::chrono::high_resolution_clock::now() - _lastUpdate).count() << " > " << ARROW_DURATION_LIFE << std::endl;
   return (std::chrono::high_resolution_clock::now() - _creation).count() < ARROW_DURATION_LIFE;
 }
 
 const sf::Vector2f &Arrow::move() {
   std::chrono::duration<double> diffTime = std::chrono::high_resolution_clock::now() - _lastUpdate;
-  //std::cout << "move :: " << diffTime.count() << " > " << ARROW_DELTA_TIME << std::endl;
   if (diffTime.count() >= ARROW_DELTA_TIME) {
     _lastUpdate = std::chrono::high_resolution_clock::now();
-    //std::cout << "Update pos Arrow " << std::endl;
     updatePosition();
     adjustRotation();
   }
@@ -44,8 +41,6 @@ void Arrow::updatePosition() {
 
   sf::Vector2f newPos = translation.translate(_trajectoir.x * ARROW_RATE_MOVE_TIME, -_trajectoir.y * ARROW_RATE_MOVE_TIME)
                       .transformPoint(getPosition());
-
-  std::cout << "translate x ::" << _trajectoir.x << " Y ::" << _trajectoir.y << std::endl;
   setPosition(newPos);
 }
 

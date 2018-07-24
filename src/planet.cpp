@@ -19,7 +19,6 @@ sf::Vector2f Planet::getAtraction(sf::Vector2f pos) const {
 bool Planet::isCollision(const Arrow *arrow) const {
   sf::Vector2f  distDiff = getPosition() - arrow->getPosition();
   double        dist = sqrt(pow(distDiff.x, 2) + pow(distDiff.y, 2));
-  std::cout <<"isCollision ::" << (dist <= _size) << std::endl;
   return dist <= _size;
 }
 
