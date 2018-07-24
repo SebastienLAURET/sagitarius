@@ -13,7 +13,6 @@ private:
   Planet& _planet;
   int     _posDeg;
 
-
 public:
 
   Player(Planet &);

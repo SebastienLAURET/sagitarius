@@ -34,8 +34,6 @@ const sf::Vector2f &Arrow::move() {
   return getPosition();
 }
 
-
-
 void Arrow::updatePosition() {
   sf::Transform translation;
 
