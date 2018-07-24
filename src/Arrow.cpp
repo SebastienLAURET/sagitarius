@@ -11,6 +11,7 @@ Arrow::Arrow(sf::Vector2f trajectoir, sf::Vector2f position)
 const sf::Vector2f &Arrow::getTrajectoir() const {
   return _trajectoir;
 }
+
 void Arrow::applyGravity(sf::Vector2f&gravity) {
   _trajectoir.x += gravity.x;
   _trajectoir.y -= gravity.y;
