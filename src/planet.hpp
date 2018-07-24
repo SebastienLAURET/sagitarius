@@ -5,7 +5,7 @@
 #include <iostream>
 #include <math.h>
 #include "game_conf.hpp"
-
+#include "Arrow.hpp"
 class Planet : public sf::CircleShape
 {
 private:
@@ -18,9 +18,10 @@ public:
 
   sf::Vector2f getAtraction(sf::Vector2f pos) const;
 
-  int getPosX() const;
-  int getPosY() const;
-  int getSize() const;
+  int   getPosX() const;
+  int   getPosY() const;
+  int   getSize() const;
+  bool  isCollision(const Arrow *arrow) const;
 };
 
 #endif

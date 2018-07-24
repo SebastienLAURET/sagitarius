@@ -8,15 +8,19 @@ Planet::Planet(int posX, int posY, float size)
 }
 
 sf::Vector2f Planet::getAtraction(sf::Vector2f pos) const {
-  std::cout << "\nPos planet x::" << getPosition().x << " y ::" << getPosition().y << std::endl;
   sf::Vector2f distDiff = getPosition() - pos;
-  std::cout << "1 diff x ::" << distDiff.x << " y ::" << distDiff.y << std::endl;
   double dist = sqrt(pow(distDiff.x, 2) + pow(distDiff.y, 2));
-  double diffSize = ABS((_size/dist) / 10000);
+  double diffSize = ABS((_size/dist) / PLANET_RATE_GRAVITY);
   distDiff.x *= diffSize;
   distDiff.y *= diffSize;
-  std::cout << "2 diff x ::" << distDiff.x << " y ::" << distDiff.y << std::endl;
   return distDiff;
+}
+
+bool Planet::isCollision(const Arrow *arrow) const {
+  sf::Vector2f  distDiff = getPosition() - arrow->getPosition();
+  double        dist = sqrt(pow(distDiff.x, 2) + pow(distDiff.y, 2));
+  std::cout <<"isCollision ::" << (dist <= _size) << std::endl;
+  return dist <= _size;
 }
 
 int Planet::getPosX() const {

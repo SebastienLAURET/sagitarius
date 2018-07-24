@@ -14,8 +14,8 @@ private:
   ViewFinder*           _vFinder = NULL;
   Arrow*                _arrow = NULL;
   int                   _indexPlayers = 0;
-public:
 
+public:
   Univairse();
 
   bool                          isViewFinderActive() const;
@@ -31,11 +31,13 @@ public:
   void                          updateArrow();
 
   const std::list<sf::Shape*>   *getDrawableObject() const;
+
 private:
-  void    initPlanets();
-  void    initPlayers(Planet &planet);
-  void    deleteViewFinder();
+  void          initPlanets();
+  void          initPlayers(Planet &planet);
+  void          deleteViewFinder();
   sf::Vector2f  calculateGravity(sf::Vector2f) const;
+  bool          checkCollision() const;
 };
 
 #endif

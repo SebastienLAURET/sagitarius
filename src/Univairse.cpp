@@ -44,11 +44,15 @@ void Univairse::updateArrow() {
     sf::Vector2f gravity = calculateGravity(_arrow->getPosition());
     _arrow->applyGravity(gravity);
     _arrow->move();
-  } else if (_arrow != NULL) {
+  }
+  if (_arrow != NULL
+    && (!_arrow->isAlive()
+        || checkCollision())) {
     delete _arrow;
     _arrow = NULL;
   }
 }
+
 bool  Univairse::isArrowAlive() {
   return _arrow != NULL;
 }
@@ -96,4 +100,13 @@ sf::Vector2f  Univairse::calculateGravity(sf::Vector2f pos) const {
     tra += planet->getAtraction(pos);
   }
   return tra;
+}
+
+bool  Univairse::checkCollision() const {
+  for (auto planet : _planets) {
+    if (planet->isCollision(_arrow)) {
+      return true;
+    }
+  }
+  return false;
 }
