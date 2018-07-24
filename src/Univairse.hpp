@@ -1,5 +1,5 @@
 #ifndef UNIVAIRSE_HPP
-# define UNIVAIRSE_HPP
+#define UNIVAIRSE_HPP
 
 #include <list>
 #include "planet.hpp"

@@ -75,7 +75,6 @@ const std::list<sf::Shape*> *Univairse::getDrawableObject() const {
   return drawableObject;
 }
 
-
 void Univairse::initPlanets() {
   Planet *tmpPlanet = new Planet(500, 500, 100);
   initPlayers(*tmpPlanet);
